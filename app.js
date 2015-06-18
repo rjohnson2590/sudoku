@@ -5,19 +5,20 @@ function Vector(x,y){
 	this.y=y;
 }
 
-// 	var board = ['+---------+---------+---------+',
-// 				 '| x  x  x | y  x  y | y  x  y |',
-// 				 '  x  y  y | y  x  y | y  x  y |',
-// 				 '| y  x  y | y  x  y | x  y  x |',
-// 				 '+---------+---------+---------+',
-// 				 '| y  x  y | x  x  y | y  y  y |',
-// 				 '  y  y  x | y  x  y | x  y  y |',
-// 				 '| y  y  y | y  x  x | y  x  y |',
-// 				 '+---------+---------+---------+',
-// 				 '| x  y  x | y  x  y | y  x  y |',
-// 				 '  y  x  y | y  x  y | y  y  x |',
-// 				 '| y  x  y | y  x  y | x  x  x |',
-// 				 '+---------+---------+---------+' ]
+	var board = ['+---------+---------+---------+',
+				 '| x  x  x | y  x  y | y  x  y |',
+				 '  x  y  y | y  x  y | y  x  y |',
+				 '| y  x  y | y  x  y | x  y  x |',
+				 '+---------+---------+---------+',
+				 '| y  x  y | x  x  y | y  y  y |',
+				 '  y  y  x | y  x  y | x  y  y |',
+				 '| y  y  y | y  x  x | y  x  y |',
+				 '+---------+---------+---------+',
+				 '| x  y  x | y  x  y | y  x  y |',
+				 '  y  x  y | y  x  y | y  y  x |',
+				 '| y  x  y | y  x  y | x  x  x |',
+				 '+---------+---------+---------+' ]
+
 
 function Grid(rows,cols){
 	this.space= new Array(rows*cols)
@@ -52,6 +53,27 @@ var sudokuNums= sudoNums.split('')
 
 // var sudokuNums= sudoNums.split('')
 
+function createBoard(board){
+	for(var i=0; i<board.length;i++){
+		// console.log(board[i])
+		for(var j=0; j<board[i].length;j++){
+			// console.log(board[i][j])
+			if(board[i][j]=='x'){
+				var newChar=sudokuNums.shift()
+				board([i][j])= newChar
+				console.log(board[i][j])
+			}else if(board[i][j]=='y'){
+				board[i][j]= '.'
+			}
+		}
+	}
+	return board
+}
+
+createBoard(board)
+console.log(board)
+
+
 for (var i=0; i<sudokuNums.length; i++){
 	for (var j=0; j<1; j++){
 	grid.set(new Vector(i, j), sudokuNums[i])
@@ -61,12 +83,12 @@ for (var i=0; i<sudokuNums.length; i++){
 
 
 // console.log(grid.space)
-console.log(grid.get(new Vector(1,0)))
+// console.log(grid.get(new Vector(1,0)))
 
 if(grid.get(new Vector(1,0))==='5'){
 	 grid.set(new Vector(1, 1),'4')
 }
 
-console.log(grid.get(new Vector(1,1)))
+// console.log(grid.get(new Vector(1,1)))
 
 
