@@ -4,7 +4,7 @@ var nums = '4....9.....541...3........7.......2..31.7...89.6..3.......9....1..6.
 
 var __= require('lodash')
 
-console.log('hello')
+
 function printToHTML(games) {
 	var table = document.createElement('table');
 	// var tr = document.createElement('tr');
@@ -19,12 +19,6 @@ function printToHTML(games) {
 		td.innerHTML = cell.val;
 		tr.appendChild(td);
 	}
-game.solve()
-game.solve()
-game.solve()
-game.solve()
-game.solve()
-game.solve()
 	document.body.appendChild(table);
 }
 
@@ -114,7 +108,7 @@ Game.prototype.whatsMissing= function(thing,number){
 
 
 Game.prototype.solve=function(){
-	var options=[];
+	// var options=[];
 	for(var i=0; i<this.cells.length;i++){
 		if(this.cells[i].val=='.'){
 			var inRow=this.recognize('row',this.cells[i].row)
@@ -126,13 +120,19 @@ Game.prototype.solve=function(){
 			// console.log(inBlock)
 			var exist =__.union(inBlock,inCol,inRow)
 			// console.log(exist)
-			options=__.difference(this.fullGroup,exist)
+			var options=__.difference(this.fullGroup,exist)
+			// console.log(options)
 			console.log(options)
+			console.log('+------+')
 			if(options.length===1){
+				console.log('howdy')
 				this.cells[i].val=options[0]
 				// console.log(this.cells[i].val)
 			} else if(options.length===2){
-				this.cells[i].val=options[0]
+					console.log('hello')
+					console.log(i)
+					console.log(this.whatsMissing('block',this.cells[i].block))
+					this.cells[i].val=options[1]
 			  }
 		}
 	}
@@ -140,29 +140,49 @@ Game.prototype.solve=function(){
 	// return options
 }
 
-
+// write function that looks at other cells within block and row and col. Anaylze those cells and see if there are comparable missing numbers.
 
 var game = new Game(nums)
 
 
-console.dir(game.solve())
-for(var i=0; i<game.cells.length;i++){
-	while(game.cells[i].val === '.' ){
-		console.log('howdy')
-		game.solve()
-	}
-}
+
+// for(var i=0; i<game.cells.length;i++){
+// 	while(game.cells[i].val === '.' ){
+// 		game.solve()
+// 		// console.log(game.cells)
+// 	}
+// }
 
 	// console.log(game.recognize('row',1))
 	// console.dir(game.solve());
 	// console.dir(game.solve());
+function count(){
+	var counter=0;
+	for(var i =0; i<game.cells.length; i++){
+		if(game.cells[i].val=='.'){
+			counter ++
+		}
+	}
+	return counter
+}
+
+game.solve()
+game.solve()
+	// console.dir(game.solve())
+	// console.log(game.cells[16])
+	// console.log(count())
+	// console.dir(game.solve())
+	// console.log(game.cells)	
+	// console.log(count())
+	// console.dir(game.solve())
+	// console.log(game.cells)	
+	// console.log(count())
 	// console.dir(game.solve());
-	// console.dir(game.solve());
+	// console.log("+__________+")
+	// console.log(count())
+
 	
-// 	console.log(game.cells)
-// game.solve()
-// console.log("+__________+")
-	console.log(game.cells)
+
 
 
 
